@@ -1,4 +1,28 @@
 {
-  "name": "foundation",
-  "slug": "foundation"
+  "expo": {
+    "name": "Foundation",
+    "slug": "foundation",
+    "version": "1.0.0",
+    "scheme": "foundation",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "io.premai.foundation"
+    },
+    "android": {
+      "package": "io.premai.foundation"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
 }
