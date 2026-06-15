@@ -159,6 +159,6 @@ jobs:
             echo "---"
             echo ""
             # Strip ANSI escape codes (OCR emits colors even in text/agent mode)
-            sed -E 's/\x1b\[[0-9;]*[mGKHF]//g' /tmp/ocr-review.txt
+            sed -E -e 's/\x1b\[[0-9;]*[a-zA-Z]//g' -e 's/\^\[\[[0-9;]*[a-zA-Z]//g' /tmp/ocr-review.txt
           } > /tmp/comment.md
           gh pr comment "${{ steps.pr.outputs.number }}" --repo "${{ github.repository }}" --body-file /tmp/comment.md
