@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react-native';
+import AboutScreen from '../about';
 import HomeScreen from '../(tabs)/index';
 import SettingsScreen from '../(tabs)/settings';
 import SignInScreen from '../(auth)/sign-in';
@@ -8,6 +9,16 @@ jest.mock('expo-router', () => ({
   Link: ({ children }: { children: React.ReactNode }) => children,
   useRouter: () => ({ navigate: jest.fn(), back: jest.fn(), replace: jest.fn() }),
   useSegments: () => [],
+}));
+
+jest.mock('expo-constants', () => ({
+  __esModule: true,
+  default: {
+    expoConfig: {
+      name: 'Foundation',
+      version: '1.0.0',
+    },
+  },
 }));
 
 describe('base screens render without errors', () => {
@@ -29,5 +40,11 @@ describe('base screens render without errors', () => {
   it('renders SignUpScreen', () => {
     const { getByText } = render(<SignUpScreen />);
     expect(getByText('Create Account')).toBeTruthy();
+  });
+
+  it('renders AboutScreen with app name and version', () => {
+    const { getByText } = render(<AboutScreen />);
+    expect(getByText('Foundation')).toBeTruthy();
+    expect(getByText('Version 1.0.0')).toBeTruthy();
   });
 });
