@@ -1,3 +1,5 @@
+allowBuilds:
+  '@sentry/cli': true
 minimumReleaseAgeExclude:
   - '@expo/cli@56.1.16'
   - '@expo/config-plugins@56.0.9'
