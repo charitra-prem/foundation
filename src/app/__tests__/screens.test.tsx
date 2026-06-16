@@ -21,6 +21,33 @@ jest.mock('expo-constants', () => ({
   },
 }));
 
+jest.mock('@clerk/expo', () => ({
+  useSignIn: () => ({
+    signIn: {
+      create: jest.fn(),
+    },
+    setActive: jest.fn(),
+    isLoaded: true,
+  }),
+  useSignUp: () => ({
+    signUp: {
+      create: jest.fn(),
+      prepareEmailAddressVerification: jest.fn(),
+      attemptEmailAddressVerification: jest.fn(),
+    },
+    setActive: jest.fn(),
+    isLoaded: true,
+  }),
+  useSSO: () => ({
+    startSSOFlow: jest.fn(),
+  }),
+  useAuth: () => ({
+    isLoaded: true,
+    isSignedIn: false,
+  }),
+  ClerkProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
+
 describe('base screens render without errors', () => {
   it('renders HomeScreen', () => {
     const { getByText } = render(<HomeScreen />);
@@ -33,13 +60,23 @@ describe('base screens render without errors', () => {
   });
 
   it('renders SignInScreen', () => {
+    const { getAllByText } = render(<SignInScreen />);
+    expect(getAllByText('Sign In').length).toBeGreaterThan(0);
+  });
+
+  it('renders SignInScreen with Google button', () => {
     const { getByText } = render(<SignInScreen />);
-    expect(getByText('Sign In')).toBeTruthy();
+    expect(getByText('Continue with Google')).toBeTruthy();
   });
 
   it('renders SignUpScreen', () => {
+    const { getAllByText } = render(<SignUpScreen />);
+    expect(getAllByText('Create Account').length).toBeGreaterThan(0);
+  });
+
+  it('renders SignUpScreen with Google button', () => {
     const { getByText } = render(<SignUpScreen />);
-    expect(getByText('Create Account')).toBeTruthy();
+    expect(getByText('Continue with Google')).toBeTruthy();
   });
 
   it('renders AboutScreen with app name and version', () => {
