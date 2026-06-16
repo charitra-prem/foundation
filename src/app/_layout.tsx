@@ -1,10 +1,16 @@
+import * as Sentry from '@sentry/react-native';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
+Sentry.init({
+  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN ?? '',
+  tracesSampleRate: 1.0,
+});
+
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+function RootLayout() {
   useEffect(() => {
     SplashScreen.hideAsync();
   }, []);
@@ -17,3 +23,5 @@ export default function RootLayout() {
     </Stack>
   );
 }
+
+export default Sentry.wrap(RootLayout);
