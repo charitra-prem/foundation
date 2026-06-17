@@ -1,0 +1,19 @@
+README.md
+  s_6371de37762ce1::t_045a239f9802cc 5-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.8",
+  "base_commit_sha": "dc4f653d1d7a7f9b125ce818a3f97307cdec8b0f",
+  "prompts": {},
+  "sessions": {
+    "s_6371de37762ce1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ed4b9-8159-7420-8598-53add23a1eb7",
+        "model": "gpt-5.5"
+      },
+      "human_author": "charitra-prem <charitra@premai.io>"
+    }
+  }
+}
